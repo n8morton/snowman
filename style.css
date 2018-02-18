@@ -1,0 +1,82 @@
+/* navbar styles */
+.navbar-brand{
+    margin-right: 370px;
+}
+
+.nav-link{
+    padding: 0!important;
+}
+
+.header-values{
+    margin-left: 20px;
+    margin-bottom: 0!important
+}
+
+.card-body{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    
+}
+
+.navbar{
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+/* main pages styles */
+.container{
+    margin: 0px !important;
+    padding :10px;
+}
+
+#game-window{
+    height:500px;
+    padding:0px;
+    /* background-image: url("images/bg1.png"); */
+}
+
+#game-messages{
+    padding-bottom: 0px;
+    padding-top: 4px;
+    
+}
+
+.card-header{
+    padding:1px;
+    margin:0!important;
+    text-align: center;
+}
+
+.dropdown-toggle{
+    padding: 5px; 
+    text-align: center;
+}
+
+#geussed-letters{
+    height:340px;
+}
+
+.item-windows{
+    height:100px;
+}
+
+#game-window-whole{
+    width:970px;
+    position:relative;
+    
+    
+}
+
+#startButton{
+  float:right;
+}
+   
+.game-content{
+    float:left;
+       /* margin: 20px 0px 0px 350px; */
+}
+
+#blanks-holder{
+margin-top:95px;
+margin-right:365px;
+}
+

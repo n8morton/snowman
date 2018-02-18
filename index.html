@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+
+    <title>Save The Snowman!</title>
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Mystery Word Meltdown</a>
+            
+            <div class="header-values card text-white bg-primary mb-3" style="max-width: 18rem;">                    
+                <div class="card-body">
+                    <p class="card-text">Level: 99</p>
+                </div>
+            </div>
+
+            <div class="header-values card text-white bg-primary mb-3" style="max-width: 18rem;">                    
+                <div class="card-body">
+                    <p id="score" class="card-text">Score: 0</p>
+                </div>
+            </div>
+
+            <div class="header-values card text-white bg-primary mb-3" style="max-width: 18rem;">                    
+                <div class="card-body">
+                    <p class="card-text">High Score: 9999</p>
+                </div>
+            </div>
+              
+            <div class="header-values card text-white bg-primary mb-3" style="max-width: 18rem;">                    
+                <div class="card-body">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Game Stats</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <p>Games Played:</p>
+                            <p>Wins:</p>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <p>Losses:</p>
+                            <p>Biggest Combo:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+        <div class="container">
+
+            <div class ="row">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="geussed-letters" class="card">
+                                <h5 class="card-header nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Instructions</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <p>type instructions for game here........</p>   
+                                    </div>                                             
+                                </h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">Guessed Letters:</h5>
+                                    <p class="card-text">--put letters in here--        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae qui, error harum adipisci perspiciatis quos et, explicabo, fugiat ratione totam dolores magni dolore. Sapiente delectus, doloribus. molestias quisquam natus neque facilis eveniet aperiam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="item-windows card">
+                                <div class="card-header">
+                                    <h5>Snowballs: 0/3</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">--snowball images go here!--</p>
+                                    <!-- <a href="#" class="btn btn-primary">Use Snowball!</a> -->
+                                </div>
+                            </div>
+                            <div class="item-windows card">
+                                <div class="card-header">
+                                    <h5>Magnifying Glasses: 0/3</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">--magnifying glass images go here!--</p>
+                                    <!-- <a href="#" class="btn btn-primary">Use Snowball!</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div id="game-window-whole" class="card">
+                        <div id="game-messages" class="card-header">
+                                <button id="startButton" type="button">
+                                        <span style=font-size:1em id="button=text">Click To Start!</span>
+                                </button>
+                            <h5 id="game-update">Guess the Word Before the Snowman Melts!</h5>
+                        </div>
+                        <img id="game-background" class="card-body" src="images/bg1.png">
+                                
+                            
+                            <div align=center id="game">
+      
+                                
+                                
+                                <h1> <span id="game-message"><strong></strong></span></h1>
+                                  
+                                <br><br><br><br><br><br>
+                                
+                                <span style=font-size:5em id="blanks"></span>
+                            
+                                <br><br>
+                                
+                                <span style=padding-right:100px id ="guessed-letters"></span> 
+                                <span style=padding-right:100px id="score"></span>
+                                <span  style=padding-left:100px id="strike-counter"></span>
+                                                                 
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>     
+
+        <script type="text/javascript">
+            var buttonText = document.getElementById("button=text");
+            var gameUpdate = document.getElementById("game-update");    
+            var blanks = document.getElementById("blanks");
+            var guessedLetters = document.getElementById("guessed-letters");
+            var strikeCounter = document.getElementById("strike-counter");
+            var startButton = document.getElementById("startButton");
+            var displayScore = document.getElementById("score");
+        
+            var previousGuesses=[];
+            var blanksArray=[];
+            var lettersArray=[];
+            var combo=0;
+            var strikes=0;
+            var score=0;
+            var highScore;
+            var correctGuess;
+            var numberCorrect;
+            var backgroundArray=[
+                "images/bg1.png",
+                "images/bg2.png", 
+                "images/bg3.png", 
+                "images/bg4.png", 
+                "images/bg5.png", 
+                "images/bg6.png", 
+                "images/bg7.png", 
+                "images/bg8.png"];
+            
+    
+       
+        
+        
+            // sets word bank and has computer select a random word
+            var wordBank = [
+                "about", "above", "after", "again", "apple", "began", "begin", "black", "block", "bring", 
+                "brook", "brown", "build", "carry", "chair", "color", "could", "dance", "drink", "empty",
+                "found", "funny", "green", "guess", "happy", "hello", "horse", "hurry", "large", "laugh", 
+                "learn", "maybe", "never", "paint", "penny", "store", "thank", "their", "train", "truck", 
+                "under", "where", "which", "white", "would", "across", "afraid", "always", "animal", "answer", 
+                "anyone", "around", "basket", "before", "behind", "belong", "beside", "better", "bitter", "bottle", 
+                "bottom", "bought", "bounce", "branch", "bridge", "button", "candle", "cannot", "caught", "cellar", 
+                "chance", "cowboy", "doctor", "dragon", "father", "friend", "kitten", "little", "mother", "peanut", 
+                "please", "pocket", "rabbit", "rocket", "school", "should", "sister", "street", "turtle", "window", 
+                "yellow", "address", "against", "already", "another", "anxious", "balcony", "balloon", "battery", 
+                "because", "bedroom", "believe", "beneath", "between", "bicycle", "blossom", "blanket", "brother", 
+                "careful", "chicken", "country", "cupcake", "evening", "excited", "feather", "herself", "himself",
+                "instead", "kitchen", "morning", "outside", "nothing", "picture", "raccoon", "snowman", "someone", 
+                "stopped", "thought", "through", "tonight", "tractor", "traffic", "trouble", "unhappy", "whisper", 
+                "whistle", "without", "accident", "airplane", "although", "anything", "anywhere", "backward", 
+                "barnyard", "baseball", "birthday", "business", "cheerful", "complain", "complete", "continue", 
+                "customer", "darkness", "daughter", "daydream", "discover", "distance", "doorbell", "electric", 
+                "election", "elephant", "elevator", "enormous", "everyone", "favorite", "football", "fountain", 
+                "friendly", "frighten", "goodness", "handsome", "lemonade", "mountain", "neighbor", "remember", 
+                "sidewalk", "sometime", "squirrel", "surprise", "together", "tomorrow'", "yourself"];
+    
+            
+        
+            startButton.onclick = function (event){
+            startButton.style.visibility="hidden";
+    
+            blanksArray.length=0;
+            strikes=0;
+            previousGuesses.length=0;
+            score=0;
+            highScore=0;
+
+            image = document.getElementById("game-background"); 
+                        image.src = backgroundArray[0];
+    
+        
+        
+            var answer = wordBank[Math.floor(Math.random()*wordBank.length)];
+            
+            gameUpdate.textContent = ("There are " + answer.length + " letters in the word. Please guess a letter." );
+            guessedLetters.textContent =("Guessed Letters: ");
+            strikeCounter.textContent = ("Strikes: " + strikes);
+            displayScore.textContent = ("Score: " + score);
+            
+            
+            function setBlanks(){
+                for (i=0; i<answer.length; i++){
+                    blanksArray.push("_");
+                }
+            }
+            
+            setBlanks();
+            
+            blanks.textContent =(blanksArray.join(" "))
+    
+            function setLetters(){
+                for (i=0; i<answer.length; i++){
+                    lettersArray.push(answer.charAt(i));
+                }
+            }
+          
+            setLetters();
+    
+            console.log(answer)
+            console.log(answer.length)
+            console.log(blanksArray)
+            console.log(lettersArray)
+    
+            document.onkeyup = function(event) {
+                var userGuess = event.key.toLowerCase();
+                if (userGuess.length !==1 || userGuess < "a" || userGuess > "z" ){
+                    return
+                }
+                
+                
+            
+    
+                function compare(){
+                    numberCorrect=0;
+                    correctGuess = false;
+                    for (i=0; i<answer.length; i++){
+                        if (userGuess == answer[i]){
+                            correctGuess = true;
+                            blanksArray[i] = answer[i]; 
+                            numberCorrect++; 
+                            blanks.textContent =(blanksArray.join(' '));
+                            
+                        }    
+                    }
+                        if (previousGuesses.indexOf(userGuess) !== -1) {
+                            gameUpdate.textContent = ("You have already guessed \"" + userGuess + "\".");
+                        }
+                        else{
+    
+                            if (correctGuess == true){         
+                            gameUpdate.textContent = ("Good Guess! Keep Going!");
+                            previousGuesses.push(userGuess);     
+                                for(i=0; i<numberCorrect; i++){
+                                    score = (score + 10 +(combo * 10));  
+                                } 
+                            combo++;                
+                            }
+                    
+                            else {
+                            gameUpdate.textContent = ("Oops, try again!"); 
+                            previousGuesses.push(userGuess);
+                            strikes++;
+                            strikeCounter.textContent = ("Strikes: " + strikes);
+                            combo = 0;
+                                if(score > 4){
+                                    score = (score - 5);
+                                }                      
+                            }
+                        }
+                        guessedLetters.textContent = ("Guessed Letters: " + previousGuesses.join(" "));
+                        displayScore.textContent = ("Score: " + score);
+                } 
+            
+                    compare();
+
+                    
+                    
+                    
+                    if (strikes>0){
+                        function changeImage(){
+                        var i=strikes;
+                        image = document.getElementById("game-background"); console.log(image)
+                        image.src = backgroundArray[i];
+                        }
+                    changeImage()
+                    }
+    
+    
+            
+                    function endgame(){
+                        if (strikes == 7){
+                            gameUpdate.textContent = ("Sorry, You Lose... " );
+                            document.getElementById("startButton").style.visibility="visible";
+                            document.onkeyup = null;   
+                            startButton.textContent = ("Click To Play Again");                 
+                        }
+    
+                        if (blanksArray.indexOf("_") == -1){
+                            gameUpdate.textContent = ("Congratulations, You Win!" );
+                            document.getElementById("startButton").style.visibility="visible";
+                            document.onkeyup = null;    
+                            startButton.textContent = ("Click To Play Again");
+                        } 
+                    }
+    
+                    endgame()  
+                }
+            }        
+            
+                
+                
+        </script>
+        
+
+    
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
