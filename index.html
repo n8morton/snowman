@@ -189,6 +189,7 @@
     
             startButton.onclick = function (event){
             startButton.style.visibility="hidden";
+            
     
             blanksArray.length=0;
             strikes=0;
@@ -196,7 +197,7 @@
             score=0;
             highScore=0;
             
-                    
+            
             var answer = wordBank[Math.floor(Math.random()*wordBank.length)];
             
             gameUpdate.textContent = ("There are " + answer.length + " letters in the word. Please guess a letter." );
@@ -210,6 +211,7 @@
             }
             
             setBlanks();
+            document.getElementById("game-window").style.background = "url(images/bg1.png)";
             
             blanks.textContent =(blanksArray.join(" "))
     
