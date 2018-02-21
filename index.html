@@ -153,7 +153,7 @@
             var score=0;
             var highScore;
             var correctGuess;
-            var numberCorrect;
+            var numberCorrect=0;
             var backgroundArray=[
                 "images/bg1.png",
                 "images/bg2.png", 
@@ -189,6 +189,9 @@
     
             startButton.onclick = function (event){
             startButton.style.visibility="hidden";
+
+            console.log(combo)
+            console.log(numberCorrect)
             
             
     
@@ -287,7 +290,9 @@
                             gameUpdate.textContent = ("Sorry, You Lose... " );
                             document.getElementById("startButton").style.visibility="visible";
                             document.onkeyup = null;   
-                            startButton.textContent = ("Click To Play Again");                 
+                            startButton.textContent = ("Click To Play Again");  
+                            numberCorrect=0;
+                            combo=0;               
                         }
     
                         if (blanksArray.indexOf("_") == -1){
@@ -295,10 +300,13 @@
                             document.getElementById("startButton").style.visibility="visible";
                             document.onkeyup = null;    
                             startButton.textContent = ("Click To Play Again");
+                            numberCorrect=0;
+                            combo=0;
                         } 
                     }
     
                     endgame()  
+                    
                 }
             }        
             
